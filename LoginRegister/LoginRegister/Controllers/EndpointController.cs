@@ -150,11 +150,10 @@ namespace ApiEndPoints.Controllers
                     int queryResult = query.ExecuteNonQuery();
                     if (queryResult == 1) return "Pomyślnie zarejstrowano";
                     else return "Nastąpił nieoczekiwany błąd podczas rejestracji. Spróbuj później";
-
+                    db.Close();
                 }
             }
             else return "BŁĄD, DANE NIE ISTNIEJĄ"; // Happens when data passed from front-end doesn't exist
-
 
 
 
@@ -202,7 +201,7 @@ namespace ApiEndPoints.Controllers
 
                     if (dr.HasRows) return new Tuple<bool, userData>(true, output);
                     else return new Tuple<bool, userData>(false, output);
-
+                    db.Close();
                 }
             }
             return new Tuple<bool, userData>(false, output); //  Happens when data passed from front-end doesn't exist
@@ -234,7 +233,7 @@ namespace ApiEndPoints.Controllers
                         else return "Wystąpił nieoczekiwany błąd podczas zmieniania hasła. Spróbuj ponownie później";
                     }
                     else return "Incorrect email or password";
-
+                    db.Close();
                 }
             }
             return "BŁĄD, DANE NIE ISTNIEJĄ";
@@ -266,7 +265,7 @@ namespace ApiEndPoints.Controllers
                         else return "Wystąpił nieoczekiwany błąd podczas zmieniania adresu email. Spróbuj ponownie później";
                     }
                     else return "Incorrect email or password";
-
+                    db.Close();
                 }
             }
             return "BŁĄD, DANE NIE ISTNIEJĄ";
@@ -327,7 +326,7 @@ namespace ApiEndPoints.Controllers
 
                     if (queryResult == 1) return "Pomyślnie stworzono zgłoszenie";
                     else return "Wystąpił nieoczekiwany błąd podczas tworzenia zgłoszeń. Spróbuj ponownie później";
-
+                    db.Close();
                 }
 
             }
@@ -358,7 +357,7 @@ namespace ApiEndPoints.Controllers
 
                     if (queryResult == 1) return "Zgłoszenie zaktualizowane";
                     else return "Wystąpił nieoczekiwany błąd podczas aktualizowania zgłoszenia. Spróbuj ponownie później";
-
+                    db.Close();
                 }
             }
             return "BŁĄD, DANE NIE ISTNIEJĄ"; //  Happens when data passed from front-end doesn't exist
@@ -381,6 +380,7 @@ namespace ApiEndPoints.Controllers
 
                     if (queryResult == 1) return "Usunięto zgłoszenie";
                     else return "Wystąpił nieoczekiwany błąd podczas usuwania zgłoszenia. Spróbuj ponownie później";
+                    db.Close();
                 }
             }
             return "Żadno zgłoszenie nie ma takiego id";
@@ -459,6 +459,7 @@ namespace ApiEndPoints.Controllers
                         iteration++;
                     }
                 }
+                db.Close();
                 return array;
             }
         }
